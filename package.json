@@ -1,0 +1,43 @@
+{
+    "name":  "agora-cli",
+    "version":  "0.1.0",
+    "description":  "Official AGORA Instance CLI",
+    "license":  "MIT",
+    "type":  "commonjs",
+    "bin":  {
+                "agora":  "bin/run.js"
+            },
+    "files":  [
+                  "bin",
+                  "dist",
+                  "README.md",
+                  "CHANGELOG.md",
+                  "LICENSE"
+              ],
+    "engines":  {
+                    "node":  "\u003e=20"
+                },
+    "scripts":  {
+                    "build":  "tsc -p tsconfig.json",
+                    "clean":  "if exist dist rmdir /s /q dist",
+                    "dev":  "tsx src/cli.ts",
+                    "test":  "vitest run",
+                    "test:watch":  "vitest",
+                    "prepack":  "npm.cmd run build"
+                },
+    "dependencies":  {
+                         "@oclif/core":  "^4.2.9",
+                         "chalk":  "^5.4.1",
+                         "inquirer":  "^12.4.2"
+                     },
+    "devDependencies":  {
+                            "@types/node":  "^22.13.5",
+                            "tsx":  "^4.19.3",
+                            "typescript":  "^5.8.2",
+                            "vitest":  "^2.1.8"
+                        },
+    "oclif":  {
+                  "bin":  "agora",
+                  "commands":  "./dist/commands"
+              }
+}
