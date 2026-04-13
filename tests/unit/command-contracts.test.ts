@@ -1,13 +1,13 @@
 import {describe, expect, it} from "vitest";
-import ServicesExecute from "../../src/commands/services/execute";
+import CapabilitiesExecute from "../../src/commands/capabilities/execute";
 import WalletTransfer from "../../src/commands/wallet/transfer";
 import AuthLogin from "../../src/commands/auth/login";
 
 describe("command contracts", () => {
-  it("services execute exposes structured input flags", () => {
-    expect(ServicesExecute.flags.input).toBeTruthy();
-    expect(ServicesExecute.flags["input-file"]).toBeTruthy();
-    expect(ServicesExecute.flags["input-stdin"]).toBeTruthy();
+  it("capabilities execute exposes structured input flags", () => {
+    expect(CapabilitiesExecute.flags.input).toBeTruthy();
+    expect(CapabilitiesExecute.flags["input-file"]).toBeTruthy();
+    expect(CapabilitiesExecute.flags["input-stdin"]).toBeTruthy();
   });
 
   it("wallet transfer supports idempotency key", () => {

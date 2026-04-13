@@ -3,8 +3,8 @@ import {globalFlags} from "../../app";
 import {printSuccess} from "../../output/printer";
 import {BaseCommand} from "../base";
 
-export default class ServicesGet extends BaseCommand {
-  public static override summary = "Get service details";
+export default class CapabilitiesGet extends BaseCommand {
+  public static override summary = "Get capability details";
 
   public static override args = {
     id: Args.string({required: true})

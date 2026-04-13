@@ -4,9 +4,10 @@ import {parseStructuredInput} from "../../input/payload";
 import {buildIdempotencyKey} from "../../utils/idempotency";
 import {printSuccess} from "../../output/printer";
 import {BaseCommand} from "../base";
+import {buildExternalCapabilityExecutionBody} from "./shared";
 
-export default class ServicesExecute extends BaseCommand {
-  public static override summary = "Execute a service";
+export default class CapabilitiesExecute extends BaseCommand {
+  public static override summary = "Execute a capability";
 
   public static override args = {
     id: Args.string({required: true})
@@ -28,12 +29,12 @@ export default class ServicesExecute extends BaseCommand {
       const payload = await parseStructuredInput(flags.input as string | undefined, flags["input-file"] as string | undefined, Boolean(flags["input-stdin"]));
 
       if (flags["mode-external"]) {
-        const body = {
-          serviceCode: args.id,
+        const body = buildExternalCapabilityExecutionBody({
+          capabilityId: String(args.id),
           input: payload || {},
           idempotencyKey: (flags["idempotency-key"] as string | undefined) || buildIdempotencyKey(),
-          correlationId: flags["correlation-id"]
-        };
+          correlationId: flags["correlation-id"] as string | undefined
+        });
 
         const response = await ctx.client.request({method: "POST", path: "/api/external/executions", body});
         printSuccess(response, {json: ctx.config.json});

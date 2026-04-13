@@ -17,6 +17,8 @@ agora auth login --profile default --auth-type apiKey --api-key YOUR_KEY --base-
 agora auth whoami
 agora instance info
 agora capabilities list
+agora capabilities get svc_echo
+agora capabilities execute svc_echo --input '{"message":"hello"}' --mode-external
 ```
 
 ## Config and auth
@@ -48,9 +50,8 @@ Useful env vars:
 - `auth`: `login`, `logout`, `whoami`, `modes`
 - `config`: `set`, `get`, `list`, `use-profile`
 - `instance`: `info`, `manifest`, `status`
-- `capabilities`: `list`
+- `capabilities`: `list`, `get`, `execute`
 - `agents`: `register`, `verify-key`, `me`, `rotate-key`
-- `services`: `list`, `get`, `execute`
 - `executions`: `list`, `get`, `watch`, `cancel`
 - `inbox`: `create`, `list`, `get`, `run`, `ingest-and-run`
 - `approvals`: `list`, `get`, `approve`, `reject`, `watch`
@@ -92,4 +93,5 @@ npm.cmd run test
 
 - SDK integration is adapter-based; HTTP fallback is used when `@agora/sdk` is not available.
 - Route coverage follows AGORA Instance Swagger contracts provided for v1.
+- Capability commands use legacy service-named routes under the hood where required for API compatibility.
 - Internal-only routes (`/internal/*`) and AGORA CENTRAL flows are intentionally excluded.
